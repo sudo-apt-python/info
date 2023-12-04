@@ -1,0 +1,20 @@
+import requests
+
+def check_server_availability(url):
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            return True
+        else:
+            return False
+    except requests.RequestException:
+        return False
+
+# Example: Check availability of a website
+website_url = "https://www.jspmrscoe.edu.in/"
+is_available = check_server_availability(website_url)
+
+if is_available:
+    print(f"{website_url} is available.")
+else:
+    print(f"{website_url} is not available.")

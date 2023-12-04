@@ -1,0 +1,20 @@
+import string
+
+def simulate_dictionary_attack(target_password, dictionary):
+    max_attempts = len(dictionary)
+
+    for attempt, candidate_password in enumerate(dictionary, start=1):
+        if candidate_password == target_password:
+            print(f"Dictionary attack successful! Password found: {candidate_password}")
+            break
+
+        if attempt >= max_attempts:
+            print("Dictionary attack unsuccessful. Exhausted all dictionary entries.")
+            break
+
+
+target_password = "Secret123!"
+dictionary = ["password", "letmein", "123456", "qwerty", "Secret123!", "admin", "monkey"]
+
+
+simulate_dictionary_attack(target_password, dictionary)

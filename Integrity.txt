@@ -1,0 +1,12 @@
+import hashlib
+
+def calculate_hash(data):
+    sha256_hash = hashlib.sha256(data.encode()).hexdigest()
+    return sha256_hash
+
+# Example: Calculate hash for a message
+data_to_hash = "This is the original data."
+hash_value = calculate_hash(data_to_hash)
+
+print(f"Original data: {data_to_hash}")
+print(f"Hash value: {hash_value}")

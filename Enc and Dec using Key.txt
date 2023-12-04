@@ -1,0 +1,44 @@
+# Define the alphabet (both uppercase and lowercase)
+LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ'
+LETTERS = LETTERS.lower()
+
+def encrypt(message, key):
+    """
+    Encrypts the input message using the specified key.
+    """
+    encrypted = ''
+    for char in message:
+        if char in LETTERS:
+            num = LETTERS.find(char)
+            num += key
+            encrypted += LETTERS[num]
+        else:
+            encrypted += char  # Preserve non-alphabetic characters
+    return encrypted
+
+def decrypt(message, key):
+    """
+    Decrypts the input message using the specified key.
+    """
+    decrypted = ''
+    for char in message:
+        if char in LETTERS:
+            num = LETTERS.find(char)
+            num -= key
+            decrypted += LETTERS[num]
+        else:
+            decrypted += char  # Preserve non-alphabetic characters
+    return decrypted
+
+def main():
+    message = input('Enter your message: ')
+    key = int(input('Enter your key (1 - 26): '))
+    choice = input('Encrypt or Decrypt? [E/D]: ')
+
+    if choice.lower().startswith('e'):
+        print("Encrypted message:", encrypt(message, key))
+    else:
+        print("Decrypted message:", decrypt(message, key))
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,21 @@
+# Import the Fernet class from the cryptography library
+from cryptography.fernet import Fernet
+
+# Generate a new Fernet key
+key = Fernet.generate_key()
+
+# Create a Fernet cipher object with the generated key
+cipher = Fernet(key)
+
+# Example plaintext message
+plaintext_message = "Hello, this is a secret message!"
+
+# Encrypt the message
+encrypted_message = cipher.encrypt(plaintext_message.encode())
+
+# Decrypt the message
+decrypted_message = cipher.decrypt(encrypted_message).decode()
+
+print(f"Original message: {plaintext_message}")
+print(f"Encrypted message: {encrypted_message}")
+print(f"Decrypted message: {decrypted_message}")

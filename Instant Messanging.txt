@@ -1,0 +1,43 @@
+from cryptography.fernet import Fernet
+
+# Create a dictionary to store user credentials (username: password)
+user_accounts = {}
+
+def create_account():
+    username = input("Enter a username: ")
+    password = input("Enter a password: ")
+    user_accounts[username] = password
+    print(f"Account created for {username}")
+
+def login():
+    username = input("Enter your username: ")
+    password = input("Enter your password: ")
+    if username in user_accounts and user_accounts[username] == password:
+        print(f"Welcome back, {username}!")
+        return True
+    else:
+        print("Invalid username or password.")
+        return False
+
+def main():
+    while True:
+        choice = input("Choose an option (1: Create Account, 2: Login, 3: Exit): ")
+        if choice == "1":
+            create_account()
+        elif choice == "2":
+            if login():
+                message = input("Enter a message to encrypt: ")
+                key = Fernet.generate_key()
+                fernet = Fernet(key)
+                encrypted_message = fernet.encrypt(message.encode())
+                print(f"Encrypted message: {encrypted_message.decode()}")
+                decrypted_message = fernet.decrypt(encrypted_message).decode()
+                print(f"Decrypted message: {decrypted_message}")
+        elif choice == "3":
+            print("Exiting. Have a great day!")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()

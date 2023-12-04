@@ -1,0 +1,24 @@
+def caesar_decrypt(ciphertext, shift):
+    """
+    Decrypts a Caesar cipher ciphertext given the shift value.
+    Args:
+        ciphertext (str): The encrypted message.
+        shift (int): The shift value (0 to 25).
+    Returns:
+        str: The decrypted plaintext.
+    """
+    plaintext = ""
+    for char in ciphertext:
+        if char.isalpha():
+            base = ord('a') if char.islower() else ord('A')
+            decrypted_char = chr((ord(char) - base - shift) % 26 + base)
+            plaintext += decrypted_char
+        else:
+            plaintext += char  # Preserve non-alphabetic characters
+    return plaintext
+
+# Example usage
+ciphertext = "Khoor Zruog"
+shift = 3
+decrypted_message = caesar_decrypt(ciphertext, shift)
+print("Decrypted message:", decrypted_message)

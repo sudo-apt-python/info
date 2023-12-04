@@ -1,0 +1,14 @@
+import binascii
+
+def text_to_hex(text):
+    # Convert the text to bytes
+    text_bytes = text.encode("utf-8")
+    # Convert bytes to hexadecimal
+    hex_string = binascii.hexlify(text_bytes).decode("utf-8")
+    return hex_string
+
+# Example usage
+input_text = "Hello, world!"
+hex_result = text_to_hex(input_text)
+print(f"Text: {input_text}")
+print(f"Hex:  {hex_result}")
